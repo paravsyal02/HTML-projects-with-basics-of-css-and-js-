@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #weatherResult {
+            margin-top: 20px;
+        }
+        #errorMessage {
+            color: red;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Basic Weather App</h1>
+    </header>
+
+    <section>
+        <form id="weatherForm">
+            <label for="city">Enter City Name</label>
+            <input type="text" id="city" placeholder="Enter City Name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+    </section><br>
+
+    <div>
+        <h2>Weather Information</h2>
+        <div id="weatherResult"></div>
+        <div id="errorMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById('weatherForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const city = document.getElementById('city').value;
+            const apiKey = 'bb20aac7f2ccebb32d80392061715fba'; // Your API key
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('City not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+                    const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+                    const weatherInfo = `
+                        <h3>Weather in ${data.name}</h3>
+                        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
+                        <p>Temperature: ${data.main.temp} °C</p>
+                        <p>Feels Like: ${data.main.feels_like} °C</p>
+                        <p>Humidity: ${data.main.humidity}%</p>
+                        <p>Wind Speed: ${data.wind.speed} m/s</p>
+                        <p>Pressure: ${data.main.pressure} hPa</p>
+                        <p>Visibility: ${data.visibility / 1000} km</p>
+                        <p>Cloudiness: ${data.clouds.all}%</p>
+                        <p>Sunrise: ${sunrise}</p>
+                        <p>Sunset: ${sunset}</p>
+                        <p>Condition: ${data.weather[0].description}</p>
+                    `;
+                    document.getElementById('weatherResult').innerHTML = weatherInfo;
+                    document.getElementById('errorMessage').innerHTML = ''; // Clear previous errors
+                })
+                .catch(error => {
+                    document.getElementById('errorMessage').innerHTML = error.message;
+                    document.getElementById('weatherResult').innerHTML = ''; // Clear previous results
+                });
+        });
+    </script>
+</body>
+</html>
