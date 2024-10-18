@@ -1,29 +1,26 @@
-Here's a sample `README.md` file you can use for your GitHub repository containing your three projects: a Weather App, a To-Do List App, and a Portfolio Website. You can customize the content as needed.
-
-```markdown
-# HTML Projects with Basic CSS and JS
+### HTML Projects with Basic CSS and JS
 
 Welcome to my collection of HTML projects! This repository contains three simple web applications developed using HTML, CSS, and JavaScript. 
 
 ## Projects Overview
 
-### 1. Basic Weather App
-- **Description**: A simple web application that fetches and displays the current weather information for a specified city using the OpenWeatherMap API.
-- **Features**:
+## 1. Basic Weather App
+ Description: A simple web application that fetches and displays the current weather information for a specified city using the OpenWeatherMap API.
+ Features:
   - Input field for entering city names.
   - Displays temperature, humidity, and weather conditions.
   - Handles errors for invalid city names.
 
-### 2. To-Do List App
-- **Description**: A basic To-Do List application that allows users to add tasks, mark them as completed, and remove them from the list.
-- **Features**:
+## 2. To-Do List App
+ Description**: A basic To-Do List application that allows users to add tasks, mark them as completed, and remove them from the list.
+ Features**:
   - Add new tasks to the list.
   - Toggle task status between completed and not completed by clicking on the status.
   - Remove tasks from the list.
 
-### 3. Portfolio Website
-- **Description**: A simple portfolio website showcasing the projects and skills of the developer.
-- **Features**:
+## 3. Portfolio Website
+  Description: A simple portfolio website showcasing the projects and skills of the developer.
+  Features:
   - Navigation links to different sections.
   - Responsive design for different screen sizes.
   - Links to individual project pages.
